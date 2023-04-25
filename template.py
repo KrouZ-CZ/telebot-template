@@ -19,7 +19,8 @@ class User:
         self.user_id = user_id
         self.current_status = 'Off'
         self.msg = ''
-
+    
+    @logging
     def handler(self, message):
         if message.text == "/start":
             self.send("hello world")
@@ -28,7 +29,7 @@ class User:
         pass
 
     def send(self, msg, markup=None):
-        bot.send_message(self.user_id, msg, reply_markup=markup)
+        return bot.send_message(self.user_id, msg, reply_markup=markup)
 
 @bot.callback_query_handler(func=lambda call:True)
 def query_handler(call):
